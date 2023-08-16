@@ -1,4 +1,4 @@
-const { contants } = require("../constants");
+const { constants } = require("../constants");
 const errorHanlder = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
   switch (statusCode) {
@@ -8,18 +8,21 @@ const errorHanlder = (err, req, res, next) => {
         message: err.message,
         stackTrace: err.stack,
       });
+
     case constants.NOT_FOUND:
       res.json({
         title: "not found",
         message: err.message,
         stackTrace: err.stack,
       });
+
     case constants.FORBIDDEN:
       res.json({
         title: "forbidded",
         message: err.message,
         stackTrace: err.stack,
       });
+
     case constants.UNAUTHORIZED:
       res.json({
         title: "unauthorized",
@@ -32,6 +35,7 @@ const errorHanlder = (err, req, res, next) => {
           message: err.message,
           stackTrace: err.stack,
         });
+      
         default:
             console.log("no error ,all good");
             break;
