@@ -38,7 +38,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }
     const user = await User.findOne({email});
     if(user && (await bcrypt.compare(password,user.password))) {
-         const accessToken = jwt.sign({_id:user._id,username:user.username,email:user.email},process.env.JWT_SECRET,{expiresIn:"1m"});
+         const accessToken = jwt.sign({_id:user._id,username:user.username,email:user.email},process.env.JWT_SECRET,{expiresIn:"1h"});
          console.log({accessToken});
          res.status(200).json({accessToken});
     }
@@ -53,6 +53,7 @@ const loginUser = asyncHandler(async (req, res) => {
 //@route get   /api/users/current
 //@access Private
 const currentUser = asyncHandler(async (req, res) => {
+
     
     res.status(200).json({message:"current user "});
   });
